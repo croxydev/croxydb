@@ -10,7 +10,7 @@ module.exports.set = function (path, value, obj) {
           schema[elem] = {};
         }
         schema = schema[elem];
-    };
+    }
     schema[pList[parseInt(len-1)]] = value
 };
 
