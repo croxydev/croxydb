@@ -1,7 +1,7 @@
 # CroxyDB
 > a JSON database module
 
-# Examples
+Examples
 
 ```js
 const croxy = require("croxydb")
