@@ -1,0 +1,17 @@
+{
+  "name": "croxydb",
+  "version": "0.0.1",
+  "description": "a JSON database module",
+  "main": "index.js",
+  "keywords": [
+    "croxy",
+    "croxy-api",
+    "croxyapi",
+    "croxydb",
+    "croxy-db",
+    "json",
+    "jsondb"
+  ],
+  "author": "CroxyTheDev",
+  "license": "MIT"
+}
