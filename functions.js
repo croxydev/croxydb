@@ -1,5 +1,4 @@
 const fs = require("fs");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 module.exports.set = function (path, value, obj) {
     var schema = obj;
@@ -51,17 +50,13 @@ module.exports.fetchFiles = function(dbFolder, dbName) {
     if (!fs.existsSync(dbFolder)){
         fs.mkdirSync(dbFolder);
         if(!fs.existsSync(`${dbFolder}/${dbName}.json`)) {
-            fs.writeFile(`${dbFolder}/${dbName}.json`, `{}`, function (err) {
-                if (err) throw err;
-            })
+            fs.writeFileSync(`${dbFolder}/${dbName}.json`, `{}`)
             return;
         }
 
     } else {
         if(!fs.existsSync(`${dbFolder}/${dbName}.json`)) {
-            fs.writeFile(`${dbFolder}/${dbName}.json`, `{}`, function (err) {
-                if (err) throw err;
-            })
+            fs.writeFileSync(`${dbFolder}/${dbName}.json`, `{}`)
         }
 
     }
