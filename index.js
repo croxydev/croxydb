@@ -10,10 +10,10 @@ class CroxyDB {
     this.noBlankData = options["noBlankData"] ? (typeof options["noBlankData"] === "boolean" ? options["noBlankData"] : false) : false;
     this.readable = options["readable"] ? (typeof options["readable"] === "boolean" ? true : false) : false;
     this.lang = options["language"] ? (langs.includes(options["language"].toLowerCase()) ? options["language"].toLowerCase() : "en") : "en";
-    this.message = require(`./language/${this.lang.toLowerCase()}.json`);
+    this.message = JSON.parse(fs.readFileSync(`language/${this.lang.toLowerCase()}.json`, "utf8"));
 
     functions.fetchFiles(this.dbFolder, this.dbName);
-  };
+  }
   
   set(db, data) {
     functions.fetchFiles(this.dbFolder, this.dbName);
@@ -216,7 +216,7 @@ class CroxyDB {
     }
 
     for (let a = 0; a < content.length; a++) {
-      if (a != (number - 1)) neww.push(content[a]);
+      if (parseInt(a) !== (parseInt(number - 1))) neww.push(content[parseInt(a)]);
     }
 
     this.set(data, neww);
@@ -249,12 +249,14 @@ class CroxyDB {
     let content = this.get(data);
     let neww = [];
 
-    if (typeof content !== "object") return false;
+    if (typeof content !== "object") {
+      return false;
+    }
 
     for (let a = 0; a < content.length; a++) {
-      let val = content[a];
+      let val = content[parseInt(a)];
 
-      if(a === (number - 1)) {
+      if(parseInt(a) === (parseInt(number - 1))) {
         neww.push(value);
       } else {
         neww.push(val);
