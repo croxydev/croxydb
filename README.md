@@ -1,4 +1,7 @@
 # CroxyDB
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/12341481f7db44c291844ab1d97cf602)](https://app.codacy.com/manual/CroxyTheDev/croxydb?utm_source=github.com&utm_medium=referral&utm_content=CroxyTheDev/croxydb&utm_campaign=Badge_Grade_Dashboard)
+
 > a JSON database module
 
 Examples
