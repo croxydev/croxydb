@@ -36,7 +36,7 @@ class CroxyDB {
     }
     return this.get(db);
     
-  };
+  }
 
   get(db) {
 
@@ -48,7 +48,7 @@ class CroxyDB {
 
     return content.find(...db.split("."));
 
-  };
+  }
 
   has(db) {
 
@@ -60,7 +60,7 @@ class CroxyDB {
 
     return content.find(...db.split(".")) ? true : false;
 
-  };
+  }
 
   delete(db) {
     functions.fetchFiles(this.dbFolder, this.dbName);
@@ -88,7 +88,7 @@ class CroxyDB {
     }
 
     return true;
-  };
+  }
 
   add(db, number) {
     
@@ -108,7 +108,7 @@ class CroxyDB {
     
     return this.get(db);
 
-  };
+  }
 
   subtract(db, number) {
     
@@ -136,7 +136,7 @@ class CroxyDB {
     
     return this.get(db);
 
-  };
+  }
 
   push(db, data) {
 
@@ -164,7 +164,7 @@ class CroxyDB {
 
     return this.get(db);
 
-  };
+  }
 
   unpush(db, data) {
 
@@ -188,7 +188,7 @@ class CroxyDB {
 
     return this.get(db);
 
-  };
+  }
 
   delByPriority(data, number) {
 
@@ -216,13 +216,15 @@ class CroxyDB {
     }
 
     for (let a = 0; a < content.length; a++) {
-      if (parseInt(a) !== (parseInt(number - 1))) neww.push(content[parseInt(a)]);
+      if (a !== (number-1)) {
+        neww.push(content[parseInt(a)]);
+      }
     }
 
     this.set(data, neww);
     return this.get(data);
 
-  };
+  }
 
   setByPriority(data, value, number) {
 
@@ -256,7 +258,7 @@ class CroxyDB {
     for (let a = 0; a < content.length; a++) {
       let val = content[parseInt(a)];
 
-      if(parseInt(a) === (parseInt(number - 1))) {
+      if(a === (number-1)) {
         neww.push(value);
       } else {
         neww.push(val);
@@ -266,7 +268,7 @@ class CroxyDB {
     this.set(data, neww);
     return this.get(data);
 
-  };
+  }
 
   all() {
     const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
@@ -280,7 +282,7 @@ class CroxyDB {
 
     return true;
 
-  };
+  }
 
 };
 
