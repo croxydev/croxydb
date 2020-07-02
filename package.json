@@ -10,8 +10,18 @@
     "croxydb",
     "croxy-db",
     "json",
-    "jsondb"
+    "jsondb",
+    "db",
+    "database"
   ],
+  "bundleDependencies": false,
+  "dependencies": {
+    "fs": "^0.0.1-security"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CroxyTheDev/croxydb.git"
+  },
   "author": "CroxyTheDev",
   "license": "MIT"
 }
