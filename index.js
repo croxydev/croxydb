@@ -1,4 +1,4 @@
-const requiredModules = ["fs"];
+const functions = require("./functions.js");
 const langs = ["tr", "en"];
 const fs = require("fs");
 
@@ -193,9 +193,7 @@ class CroxyDB {
 
   deleteAll() {
 
-    fs.writeFile(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify({}, null, 2), function writeJSON(err) {
-      if (err) return console.log(err);
-    });
+    fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify({}, null, 2));
 
     return true;
 
