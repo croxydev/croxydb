@@ -217,7 +217,7 @@ class CroxyDB {
 
     for (let a = 0; a < content.length; a++) {
       if (a !== (number-1)) {
-        neww.push(content[parseInt(a)]);
+        neww.push(content[a]);
       }
     }
 
@@ -256,7 +256,7 @@ class CroxyDB {
     }
 
     for (let a = 0; a < content.length; a++) {
-      let val = content[parseInt(a)];
+      let val = content[a];
 
       if(a === (number-1)) {
         neww.push(value);
