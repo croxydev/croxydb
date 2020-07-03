@@ -5,13 +5,13 @@ module.exports.set = function (path, value, obj) {
     var pList = path.split(".");
     var len = pList.length;
     for(var i = 0; i < len-1; i++) {
-        var elem = pList[parseInt(i)];
+        var elem = pList[i];
         if( typeof schema[elem] !== "object" ) {
           schema[elem] = {};
         }
         schema = schema[elem];
     }
-    schema[pList[parseInt(len-1)]] = value
+    schema[pList[len-1]] = value
 };
 
 Object.prototype.find = function() {
@@ -36,7 +36,7 @@ module.exports.delete = function(obj, path) {
   
     for (var i = 0; i < path.length - 1; i++) {
   
-      obj = obj[path[parseInt(i)]];
+      obj = obj[path[i]];
   
       if (typeof obj === "undefined") {
         return;
