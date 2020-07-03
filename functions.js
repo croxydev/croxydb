@@ -11,7 +11,7 @@ module.exports.set = function (path, value, obj) {
         }
         schema = schema[elem];
     }
-    schema[pList[len-1]] = value
+    schema[pList[len-1]] = value;
 };
 
 Object.prototype.find = function() {
