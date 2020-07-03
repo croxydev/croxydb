@@ -274,7 +274,7 @@ class CroxyDB {
     const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     return content;
-  };
+  }
 
   deleteAll() {
 
