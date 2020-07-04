@@ -182,7 +182,7 @@ class CroxyDB {
       arr = this.get(db);
     }
 
-    arr = arr.filter(x => x !== data);
+    arr = arr.filter((x) => x !== data);
 
     this.set(db, arr);
 
