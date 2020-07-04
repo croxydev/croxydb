@@ -284,6 +284,6 @@ class CroxyDB {
 
   }
 
-};
+}
 
 module.exports = CroxyDB;
