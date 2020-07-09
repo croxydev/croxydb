@@ -10,7 +10,7 @@ class CroxyDB {
     this.noBlankData = options["noBlankData"] ? (typeof options["noBlankData"] === "boolean" ? options["noBlankData"] : false) : false;
     this.readable = options["readable"] ? (typeof options["readable"] === "boolean" ? true : false) : false;
     this.lang = options["language"] ? (langs.includes(options["language"].toLowerCase()) ? options["language"].toLowerCase() : "en") : "en";
-    this.message = JSON.parse(fs.readFileSync(`language/${this.lang.toLowerCase()}.json`, "utf8"));
+    this.message = JSON.parse(fs.readFileSync(`./language/${this.lang.toLowerCase()}.json`, "utf8"));
 
     functions.fetchFiles(this.dbFolder, this.dbName);
   }
@@ -26,13 +26,13 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankData"]);
     }
 
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
     functions.set(db, data, content);
 
     if(this.readable) {
-      fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content, null, 2));
+      fs.writeFileSync(`./${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content, null, 2));
     } else {
-      fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content));
+      fs.writeFileSync(`./${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content));
     }
     return this.get(db);
     
@@ -44,7 +44,7 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankName"]);
     }
 
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     return functions.get(content, ...db.split("."));
 
@@ -56,7 +56,7 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankName"]);
     }
 
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     return functions.get(content, ...db.split("."));
 
@@ -68,7 +68,7 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankName"]);
     }
 
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     return functions.get(content, ...db.split(".")) ? true : false;
 
@@ -81,7 +81,7 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankName"]);
     }
 
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     if(!this.get(db)) {
       return false;
@@ -94,9 +94,9 @@ class CroxyDB {
     }
     
     if(this.readable) {
-      fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content, null, 2));
+      fs.writeFileSync(`./${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content, null, 2));
     } else {
-      fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content));
+      fs.writeFileSync(`./${this.dbFolder}/${this.dbName}.json`, JSON.stringify(content));
     }
 
     return true;
@@ -283,14 +283,14 @@ class CroxyDB {
   }
 
   all() {
-    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+    const content = JSON.parse(fs.readFileSync(`./${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
     return content;
   }
 
   deleteAll() {
 
-    fs.writeFileSync(`${this.dbFolder}/${this.dbName}.json`, JSON.stringify({}, null, 2));
+    fs.writeFileSync(`./${this.dbFolder}/${this.dbName}.json`, JSON.stringify({}, null, 2));
 
     return true;
 
