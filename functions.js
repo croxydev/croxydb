@@ -15,13 +15,9 @@ module.exports.set = function (path, value, obj) {
 };
 
 module.exports.get = function(obj, ...data) {
-    try {
-      return data.reduce(function(acc, key) {
-        return acc[`${key}`];
-      }, obj);
-    } catch(e) {
-      return;
-    }
+  return data.reduce(function(acc, key) {
+    return acc[`${key}`];
+  }, obj);
 };
 
 module.exports.delete = function(obj, path) {
