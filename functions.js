@@ -47,14 +47,14 @@ module.exports.fetchFiles = function(dbFolder, dbName) {
     if (!fs.existsSync(dbFolder)){
 
         fs.mkdirSync(dbFolder);
-        if(!fs.existsSync(`${dbFolder}/${dbName}.json`)) {
-            fs.writeFileSync(`${dbFolder}/${dbName}.json`, "{}");
+        if(!fs.existsSync(`./${dbFolder}/${dbName}.json`)) {
+            fs.writeFileSync(`./${dbFolder}/${dbName}.json`, "{}");
             return;
         }
 
     } else {
-        if(!fs.existsSync(`${dbFolder}/${dbName}.json`)) {
-            fs.writeFileSync(`${dbFolder}/${dbName}.json`, "{}");
+        if(!fs.existsSync(`./${dbFolder}/${dbName}.json`)) {
+            fs.writeFileSync(`./${dbFolder}/${dbName}.json`, "{}");
         }
 
     }
