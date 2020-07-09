@@ -46,7 +46,19 @@ class CroxyDB {
 
     const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
-    return content.find(...db.split("."));
+    return functions.get(content, ...db.split("."));
+
+  }
+
+  fetch(db) {
+
+    if(!db) {
+      throw new TypeError(this.message["errors"]["blankName"]);
+    }
+
+    const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
+
+    return functions.get(content, ...db.split("."));
 
   }
 
@@ -58,7 +70,7 @@ class CroxyDB {
 
     const content = JSON.parse(fs.readFileSync(`${this.dbFolder}/${this.dbName}.json`, "utf8"));
 
-    return content.find(...db.split(".")) ? true : false;
+    return functions.get(content, ...db.split(".")) ? true : false;
 
   }
 
@@ -217,7 +229,7 @@ class CroxyDB {
 
     for (let a = 0; a < content.length; a++) {
       if (a !== (number-1)) {
-        neww.push(content[a]);
+        neww.push(content[`${a}`]);
       }
     }
 
@@ -256,7 +268,7 @@ class CroxyDB {
     }
 
     for (let a = 0; a < content.length; a++) {
-      let val = content[a];
+      let val = content[`${a}`];
 
       if(a === (number-1)) {
         neww.push(value);
