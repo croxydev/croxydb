@@ -10,7 +10,7 @@ class CroxyDB {
     this.noBlankData = options["noBlankData"] ? (typeof options["noBlankData"] === "boolean" ? options["noBlankData"] : false) : false;
     this.readable = options["readable"] ? (typeof options["readable"] === "boolean" ? true : false) : false;
     this.lang = options["language"] ? (langs.includes(options["language"].toLowerCase()) ? options["language"].toLowerCase() : "en") : "en";
-    this.message = JSON.parse(fs.readFileSync(`./language/${this.lang.toLowerCase()}.json`, "utf8"));
+    this.message = require(`./language/${this.lang.toLowerCase()}.json`);
 
     functions.fetchFiles(this.dbFolder, this.dbName);
   }
@@ -116,7 +116,7 @@ class CroxyDB {
       throw new TypeError(this.message["errors"]["blankNumber"]);
     }
 
-    this.set(db, Number(this.get(db) ? (isNaN(this.get(db)) ? number : this.get(db)+number) : number));
+    this.set(db, Number(this.get(db) ? (isNaN(this.get(db)) ? Number(number) : this.get(db)+Number(number)) : Number(number)));
     
     return this.get(db);
 
@@ -137,14 +137,16 @@ class CroxyDB {
     }
 
     if(this.get(db)-number <= 1) {
-      return this.delete(db);
+      this.delete(db);
+      return (this.get(db) || 0)
     }
 
     if(!this.get(db)) {
-      return this.delete(db);
+      this.delete(db);
+      return (this.get(db) || 0)
     }
 
-    this.set(db, this.get(db) ? (this.get(db)-number <= 1 ? 1 : (isNaN(this.get(db)) ? 1 : this.get(db)-number) || 1) : 1);
+    this.set(db, this.get(db) ? (this.get(db)-Number(number) <= 1 ? 1 : (isNaN(this.get(db)) ? 1 : this.get(db)-Number(number)) || 1) : 1);
     
     return this.get(db);
 
