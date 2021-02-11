@@ -34,4 +34,3 @@ db.delete("x") // true
 db.deleteAll() // true
 ```
 
-If you've any question, you can join to my Discord server: [Click me!](https://discord.gg/mswG4px)
