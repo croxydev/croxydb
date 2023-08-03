@@ -8,11 +8,12 @@ module.exports = {
     	dbFolder: this.folder || "croxydb",
     	noBlankData: this.noBlankData || false,
     	readable: this.readable || false,
-    	language: this.lang ? this.lang : "en" 
+    	language: this.lang ? this.lang : "en",
+      isMongo: this.mongo,
+      mongoOptions: this.mongoOptions || {}
     }
     this.message = this.lang ? require(`../language/${this.lang.toLowerCase()}.json`) : require(`../language/en.json`);
-    this.adapter = adapter.set ? adapter : new adapter(this.options);
-
+    this.adapter = adapter.set ? adapter : (this.mongo ? new adapter(this.options.mongoOptions) : new adapter(this.options));
     fetch("https://registry.npmjs.org/croxydb/latest").then(async(res) => {
         res.json().then((data) => {
           if(require("../package.json").version !== data.version) {
@@ -29,11 +30,46 @@ module.exports = {
     return lang;
   },
 
-  setAdapter(adapter) {
-    var adapter = require("../adapters/"+adapter) || require("../adapters/jsondb");
+  setMongo(options) {
+    try {
+      require("mongoose");
+    } catch (error) {
+      throw new TypeError("You must install \"mongoose\" to use this adapter.");
+    }
+    var adapter = require("../adapters/mongo/index");
     this.adapter = adapter;
+    this.mongo = true;
+    this.mongoOptions = options;
+  },
+
+  deleteMongo() {
+    var adapter = require("../adapters/jsondb");
+    this.adapter = adapter;
+    this.mongo = false;
     this.setOptions();
-    return true;
+  },
+
+  setAdapter(adapter, options = {}) {
+    if(adapter !== "mongo") {
+      var adapter = require("../adapters/"+adapter) || require("../adapters/jsondb");
+      this.adapter = adapter;
+      this.mongo = false;
+      this.setOptions();
+      return true;
+    } else {
+      try {
+        require("mongoose");
+        require("deasync");
+      } catch (error) {
+        throw new TypeError("You must install \"mongoose\" and \"deasync\" modules to use this adapter.");
+      }
+      var adapter = require("../adapters/mongo/index");
+      this.mongo = true;
+      this.adapter = adapter;
+      this.mongoOptions = options;
+      this.setOptions();
+      return adapter;
+    }
   },
 
   setFolder(folder) {

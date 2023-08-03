@@ -24,6 +24,9 @@
     "local storage",
     "node-json-db",
     "db",
+    "mongo",
+    "mongoose",
+    "mongodb",
     "database"
   ],
   "license": "MIT",
@@ -32,7 +35,7 @@
   "name": "croxydb",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CroxyTheDev/croxydb.git"
+    "url": "git+https://github.com/croxywastaken/croxydb.git"
   },
-  "version": "0.0.8"
+  "version": "0.0.9"
 }
